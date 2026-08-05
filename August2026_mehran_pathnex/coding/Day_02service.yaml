@@ -1,0 +1,73 @@
+Day 02 - Service & tags
+
+ Ansible - Install & Enable enableNavigationSwExperimentVariant
+ - name: Install and start Nginx on PathnameContext
+ host: all
+ become: yes
+
+ tasks:
+ - name: Install Nginx
+ yum:
+ name: nginx
+ state: present
+
+ - name: enable nginx
+ service:
+ name: nginx
+ state: started
+ enable: yes
+
+
+  Terraform - EC2 with Tags (r5.2xlarge)
+  provider "aws" {
+    region = "us-east-1"
+  }
+
+  resource "aws_instance" "pathnexEC2" {
+    ami           = "ami-0abcd1234abcd1234"
+    instance_tyoe = "r5.2x1large"
+
+tags = {
+    Name          = "Pathnex-Servrr"
+    Environment   = "Traning"
+    Owner         = "PathnexStudent"
+     }
+  }
+
+
+ # Kubernetes - Deployment with 2 Replicas
+ apiversion: app/v1
+ kind: Deployment
+ metadata:
+name: Pathnex-Deployment
+spec:
+Replicas: 2
+selector:
+Matchlabels:
+app: pathnex-app
+template:
+metadata:
+labels:
+app: pathnex-app
+spec:
+containers:
+- name: app
+image: nginx
+ports:
+- containerport: 80
+
+
+ Shell Script - Disk usage
+ #!/bin/bash
+ df -h
+
+  Docker 
+  # Docker Image & containers
+  docker pull ubuntu
+docker image
+docker ps -a
+
+ # Docker File
+ FROM ubuntu:22.04
+ RUN apt update
+ CMD ["echo", "hello pathnex"]
