@@ -1,0 +1,103 @@
+Day 04 - Basic CI/CD Concepts with Jinkins & Gitlab
+
+
+ Jinkinsfile - Basic CI Pipeline
+ Pipeline {
+ stages {
+ stage ('build') {
+ steps {
+ echo "building project'
+ }
+ }
+ stage('test') {
+ steps {
+ echo 'running tests'
+ }
+ }
+ stage('Deploy') {
+ steps {
+ echo 'deploying application'
+ }
+ }
+ }
+ }
+ 
+ 
+ 
+  Gitlab CI/CD - basic Pipeline
+  stages:
+  - build
+  - test
+  - deploy
+  
+  build: 
+  stage: build
+  scripr:
+  - echo "building project"
+  
+  test:
+  stage: test
+  script:
+  - echo "running tests"
+  
+ deploy:
+ stage: deploy
+ script:
+ - echo "deploying application"
+
+
+  Ansile - Install and Configure Nginx
+  - name: Install and Configure Nginx
+  Hosts: all
+  become: yes
+  tasks:
+  - name: Install nginx
+  yum:
+  name:nginx
+  state: present
+  - name: configure nginx
+  templete:
+  src: nginx.conf.j2
+  dest: /etc/nginx/nginx.conf
+  - name: state nginx service
+  service:
+  name: nginx
+  state: present
+  enabled: yes
+
+
+    Terraform - EC2 with security group
+    resource "aws_securitygroup" "example" {
+    name    = "example_security_group"
+    discription = "allow SSH and HTTP"
+    ingress {
+    frop_port  =22
+    to_port    =22
+    protocol   = "tcp"
+    cidr_blocks= ["0.0.0.0/0"]
+    }
+
+   ingress {
+   from_port = 80
+   to_port   = 80
+   protocol = "tcp"
+   cidr_blocks ["0.0.0.0/0"]
+   }
+
+   engress {
+   from_port = 0
+   to_port  =  0
+   protocol = "-1"
+   }
+   }
+  
+
+   Docker
+   # Apache Container
+   FROM ubuntu:22.04
+   RUN apt update && apt install apache2 -y
+   RUN echo "hello pathnex" > /var/www/html/index.html
+   CMD ["apachectl"' "-D"' "FOREGROUND"]
+
+   # bASH REAL PATH
+    /VAR/WWW/HTML
